@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #ef4444; /* red-500 */
+  --color-brand-secondary: #f97316; /* orange-500 */
+  --color-surface-dark: #18181b;
+  --color-card-dark: #27272a;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  :root {
+    --bg-color: #09090b; /* zinc-950 */
+    --text-color: #e4e4e7; /* zinc-200 */
+    --text-muted: #a1a1aa; /* zinc-400 */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(39, 39, 42, 0.4); /* zinc-800/40 */
+    --panel-bg: rgba(24, 24, 27, 0.8); /* zinc-900/80 */
+  }
+
+  :root.light {
+    --bg-color: #fafafa; /* zinc-50 */
+    --text-color: #18181b; /* zinc-900 */
+    --text-muted: #52525b; /* zinc-600 */
+    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --panel-bg: rgba(244, 244, 245, 0.9); /* zinc-100/90 */
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    @apply antialiased selection:bg-red-500/30;
+    margin: 0;
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+}
+
+.glass-panel {
+  background-color: var(--panel-bg);
+  @apply backdrop-blur-xl border shadow-2xl;
+  border-color: var(--border-color);
+}
+
+.glass-card {
+  background-color: var(--card-bg);
+  @apply backdrop-blur-md border transition-all duration-300;
+  border-color: var(--border-color);
+}
+
+.glass-card:hover {
+  @apply border-red-500/30;
+}
+
+.atmosphere-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(249, 115, 22, 0.12) 0%, transparent 50%);
+}
+
+:root.light .atmosphere-blur {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(249, 115, 22, 0.06) 0%, transparent 50%);
+}
+
+.glow-text {
+  text-shadow: 0 0 24px rgba(239, 68, 68, 0.6);
+}
+
+:root.light .glow-text {
+  text-shadow: none;
+}
+
+/* Custom range input styling */
+input[type='range'] {
+  @apply accent-red-500;
+}
+
